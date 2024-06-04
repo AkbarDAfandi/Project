@@ -25,7 +25,9 @@ if(isset($_POST['add_product'])){
       $message[] = 'product name already added';
    }else{
       $add_product_query = mysqli_query($conn, "INSERT INTO `products`(name, price, image) VALUES('$name', '$price', '$image')") or die('query failed');
+      $product_id = mysqli_insert_id($conn);
 
+      
       if($add_product_query){
          if($image_size > 2000000){
             $message[] = 'image size is too large';

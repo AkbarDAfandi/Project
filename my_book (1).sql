@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2024 at 07:15 AM
+-- Generation Time: Jun 04, 2024 at 12:11 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,7 +29,6 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cart` (
   `id` int(100) NOT NULL,
-  `user_id` int(100) NOT NULL,
   `name` varchar(100) NOT NULL,
   `price` int(100) NOT NULL,
   `quantity` int(100) NOT NULL,
@@ -44,7 +43,6 @@ CREATE TABLE `cart` (
 
 CREATE TABLE `message` (
   `id` int(100) NOT NULL,
-  `user_id` int(100) NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `number` varchar(12) NOT NULL,
@@ -59,7 +57,6 @@ CREATE TABLE `message` (
 
 CREATE TABLE `orders` (
   `id` int(100) NOT NULL,
-  `user_id` int(100) NOT NULL,
   `name` varchar(100) NOT NULL,
   `number` varchar(12) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -70,6 +67,13 @@ CREATE TABLE `orders` (
   `placed_on` varchar(50) NOT NULL,
   `payment_status` varchar(20) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `name`, `number`, `email`, `method`, `address`, `total_products`, `total_price`, `placed_on`, `payment_status`) VALUES
+(8, 'aaa', '12121', 'user@aafd.com', 'cash on delivery', 'flat no. 112, sda12, asda, asda - 1212124', ', buukuuu (1) ', 100000, '04-Jun-2024', 'completed');
 
 -- --------------------------------------------------------
 
@@ -83,6 +87,13 @@ CREATE TABLE `products` (
   `price` int(100) NOT NULL,
   `image` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `price`, `image`) VALUES
+(6, 'buukuuu', 100000, 'NotesIMG.png');
 
 -- --------------------------------------------------------
 
@@ -104,7 +115,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `user_type`) VALUES
 (5, '123', '123@gmail.com', '202cb962ac59075b964b07152d234b70', 'user'),
-(6, '123', 'heheheha@gmail.com', '202cb962ac59075b964b07152d234b70', 'admin');
+(6, '123', 'heheheha@gmail.com', '202cb962ac59075b964b07152d234b70', 'admin'),
+(7, 'a', 'qwerty@aafd.com', '962012d09b8170d912f0669f6d7d9d07', 'admin'),
+(8, 'user', 'user@aafd.com', '962012d09b8170d912f0669f6d7d9d07', 'user');
 
 --
 -- Indexes for dumped tables
@@ -166,13 +179,13 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
